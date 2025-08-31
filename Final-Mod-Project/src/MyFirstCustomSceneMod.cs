@@ -40,7 +40,8 @@ public class MyFirstCustomSceneMod : SaveSettingsMod<SettingsClass>
     {
         return new List<ValueTuple<string, string>>
         {
-            // we will populate this later
+            new ValueTuple<string, string>("White_Palace_18", "Area Title Controller"),
+            new ValueTuple<string, string>("White_Palace_18", "_Managers/PlayMaker Unity 2D")
         };
     }
 
