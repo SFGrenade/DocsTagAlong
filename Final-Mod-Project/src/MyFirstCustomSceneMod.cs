@@ -31,7 +31,7 @@ public class MyFirstCustomSceneMod : SaveSettingsMod<SettingsClass>
 
     public MyFirstCustomSceneMod() : base("My First Custom Scene Mod")
     {
-        LoadAssetbundles();
+        LoadAssetBundles();
 
         InitCallbacks();
     }
