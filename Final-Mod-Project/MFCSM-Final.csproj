@@ -17,6 +17,7 @@
         <AssemblyOriginatorKeyFile>../sgKey.snk</AssemblyOriginatorKeyFile>
         <HollowKnightRefs>../HkRefs</HollowKnightRefs>
         <ExportDir>bin/Publish</ExportDir>
+        <AssetbundleDir>../Unity-Project/Assets/AssetBundles</AssetbundleDir>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
     <Import Project="LocalOverrides.targets" Condition="Exists('LocalOverrides.targets')"/>
@@ -36,5 +37,8 @@
         <None Include="LICENSE"/>
         <None Include="ModDependencies.txt"/>
         <None Include="README.md"/>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Resources/*"/>
     </ItemGroup>
 </Project>

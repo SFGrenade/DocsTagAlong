@@ -1,4 +1,8 @@
 <Project>
+    <Target Name="Copy Assetbundles from assetbundle dir" BeforeTargets="PreBuildEvent">
+        <Delete Condition="Exists('$(AssetbundleDir)/my_first_assetbundle')" Files="$(ProjectDir)/Resources/my_first_assetbundle" />
+        <Copy Condition="Exists('$(AssetbundleDir)/my_first_assetbundle')" SourceFiles="$(AssetbundleDir)/my_first_assetbundle" DestinationFolder="$(ProjectDir)/Resources/" />
+    </Target>
     <Target Name="Copy mod to export dir" AfterTargets="PostBuildEvent">
         <!-- Remove export dir and make a new one (it's simpler than removing individual files inside the folder) -->
         <RemoveDir Condition="Exists('$(ExportDir)/$(TargetName)/')" Directories="$(ExportDir)/$(TargetName)/" />
