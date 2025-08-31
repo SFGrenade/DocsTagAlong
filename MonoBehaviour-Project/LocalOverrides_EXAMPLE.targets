@@ -4,5 +4,7 @@
     <HollowKnightRefs>C:/Program Files (x86)/Steam/steamapps/common/Hollow Knight/hollow_knight_Data/Managed/</HollowKnightRefs>
     <!-- Where a .zip and .dll shall end up upon building the project -->
     <ExportDir>C:/Users/SFG/Documents/Hollow Knight Stuff/__Exports/</ExportDir>
+    <!-- Where the local unity project's assetbundles will be -->
+    <AssetbundleDir>C:/Users/SFG/Documents/Hollow Knight Stuff/C#-Projects/DocsTagAlong/Unity-Project/Assets/AssetBundles/</AssetbundleDir>
   </PropertyGroup>
 </Project>
