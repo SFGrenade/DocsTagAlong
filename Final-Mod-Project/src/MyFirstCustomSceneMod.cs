@@ -1,5 +1,9 @@
+using System;
 using Modding;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using SFCore.Generics;
 using UnityEngine;
 
 namespace MyFirstCustomSceneMod;
@@ -7,26 +11,49 @@ namespace MyFirstCustomSceneMod;
 /// <summary>
 /// Base class.
 /// </summary>
-public class MyFirstCustomSceneMod : Mod
+public class MyFirstCustomSceneMod : SaveSettingsMod<SettingsClass>
 {
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public MyFirstCustomSceneMod() : base("MyFirstCustomSceneMod")
+    private AssetBundle _abScenes = null;
+
+    private void LoadAssetBundles()
     {
-        // some code maybe here
+        Assembly asm = Assembly.GetExecutingAssembly();
+        if (_abScenes == null)
+        {
+            using Stream s = asm.GetManifestResourceStream("MyFirstCustomSceneMod.Resources.my_first_assetbundle");
+            if (s != null)
+            {
+                _abScenes = AssetBundle.LoadFromStream(s);
+            }
+        }
     }
 
-    /// <summary>
-    /// Displays the version.
-    /// </summary>
-    public override string GetVersion() => "0.0.0.0";
+    public MyFirstCustomSceneMod() : base("My First Custom Scene Mod")
+    {
+        LoadAssetbundles();
 
-    /// <summary>
-    /// Main menu is loaded.
-    /// </summary>
+        InitCallbacks();
+    }
+
+    public override List<ValueTuple<string, string>> GetPreloadNames()
+    {
+        return new List<ValueTuple<string, string>>
+        {
+            // we will populate this later
+        };
+    }
+
     public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
     {
-        // some code maybe here
+        // this will hold on to any preloads for other components to use
+        PrefabHolder.Preloaded(preloadedObjects);
+    }
+
+    private void InitCallbacks()
+    {
+        ModHooks.GetPlayerBoolHook += OnGetPlayerBoolHook;
+        ModHooks.SetPlayerBoolHook += OnSetPlayerBoolHook;
+        ModHooks.LanguageGetHook += OnLanguageGetHook;
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged += OnSceneChanged;
     }
 }
